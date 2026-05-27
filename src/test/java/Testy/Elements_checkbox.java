@@ -112,6 +112,6 @@ public class Elements_checkbox extends BaseTest {
             Thread.sleep(sleepTime);
             elementsPage.clickExcelFileCheckbox();
         }
-
+        //komentarz taktyczny
     }
 }
