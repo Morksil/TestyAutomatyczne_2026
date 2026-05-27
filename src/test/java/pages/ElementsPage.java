@@ -182,4 +182,49 @@ public class ElementsPage extends BasePage {
     public void clickExcelFileCheckbox(){
         click(excelFileCheckbox);
     }
+
+    /// RadioButton ///
+    // radiobutton
+    By yesRadioButton = By.cssSelector("input[id='yesRadio']");
+    By noRadioButton = By.cssSelector("input[id='noRadio']");
+    By impressiveRadioButton = By.cssSelector("input[id='impressiveRadio']");
+
+    //radiobutton click
+    public void clickYesRadioButton(){
+        click(yesRadioButton);
+    }
+
+    public void clickImpressiveRadioButton(){
+        click(impressiveRadioButton);
+    }
+
+    public void clickNoRadioButton(){
+        click(noRadioButton);
+    }
+
+    //radiobutton isEnable
+    public boolean yesRadioButtonAvailability(){
+        return isEnabled(yesRadioButton);
+    }
+
+    public boolean noRadioButtonAvailability(){
+        return isEnabled(noRadioButton);
+    }
+
+    public boolean impressiveRadioButtonAvailability(){
+        return isEnabled(impressiveRadioButton);
+    }
+
+    //radioButton isSelected
+    public boolean yesRadioButtonIsSelected(){
+        return isSelected(yesRadioButton);
+    }
+
+    public boolean impressiveRadioButtonIsSelected(){
+        return isSelected(impressiveRadioButton);
+    }
+
+    public boolean noRadioButtonIsSelected(){
+        return isSelected(noRadioButton);
+    }
 }

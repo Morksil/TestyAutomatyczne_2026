@@ -22,4 +22,12 @@ public class BasePage {
     public String getText(By locator){
         return driver.findElement(locator).getText();
     }
+
+    public boolean isEnabled(By locator){
+        return driver.findElement(locator).isEnabled();
+    }
+
+    public boolean isSelected(By locator){
+        return driver.findElement(locator).isSelected();
+    }
 }
