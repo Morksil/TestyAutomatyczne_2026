@@ -4,32 +4,31 @@ import base.BaseTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class Elements_TextBox extends BaseTest {
-
+public class Elements_textBox extends BaseTest {
 
     @Test
-    public void elementsTextBox_comprehensive(){
+    public void elementsTextBox_positiveTest(){
         SoftAssert softAssert = new SoftAssert();
-        driver.get(config.getProperty("baseURL"));
+        driver.get(config.getProperty("elementsTextBoxURL"));
 
         String title = driver.getTitle();
 
         System.out.println(title);
 
-        homePage.enterFullName(config.getProperty("fullName"));
-        homePage.enterEmail(config.getProperty("email"));
-        homePage.enterCurrentAddress(config.getProperty("currentAddress"));
-        homePage.enterPermanentAddress(config.getProperty("permanentAddress"));
+        elementsPage.enterFullName(config.getProperty("fullName"));
+        elementsPage.enterEmail(config.getProperty("email"));
+        elementsPage.enterCurrentAddress(config.getProperty("currentAddress"));
+        elementsPage.enterPermanentAddress(config.getProperty("permanentAddress"));
 
-        homePage.clickSubmit();
+        elementsPage.clickSubmit();
 
-        String textNameSummary = homePage.getTextNameSummary();
+        String textNameSummary = elementsPage.getTextNameSummary();
         System.out.println(textNameSummary);
-        String emailSummary = homePage.getEmailSummary();
+        String emailSummary = elementsPage.getEmailSummary();
         System.out.println(emailSummary);
-        String currentAddressSummary = homePage.getCurrentAddressSummary();
+        String currentAddressSummary = elementsPage.getCurrentAddressSummary();
         System.out.println(currentAddressSummary);
-        String permanentAddressSummary = homePage.getPermanentAddressSummary();
+        String permanentAddressSummary = elementsPage.getPermanentAddressSummary();
         System.out.println(permanentAddressSummary);
 
         softAssert.assertEquals(textNameSummary, "Name:" + config.getProperty("fullName"));

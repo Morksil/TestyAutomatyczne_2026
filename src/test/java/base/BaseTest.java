@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.HomePage;
+import pages.ElementsPage;
 import utils.ConfigReader;
 
 import java.time.Duration;
@@ -12,7 +12,7 @@ import java.time.Duration;
 public class BaseTest {
     protected WebDriver driver;
     protected ConfigReader config;
-    protected HomePage homePage;
+    protected ElementsPage elementsPage;
 
     @BeforeMethod
     public void setup(){
@@ -27,7 +27,7 @@ public class BaseTest {
 
         driver.manage().timeouts().implicitlyWait(
                 Duration.ofMillis(Integer.parseInt(config.getProperty("durationOfMillis"))));
-        homePage = new HomePage(driver);
+        elementsPage = new ElementsPage(driver);
 
         System.out.println("BaseTest driver: " + driver);
     }
