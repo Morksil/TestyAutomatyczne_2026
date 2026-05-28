@@ -227,4 +227,169 @@ public class ElementsPage extends BasePage {
     public boolean noRadioButtonIsSelected(){
         return isSelected(noRadioButton);
     }
+
+    /// Web Tables ///
+    //locators
+    By firstNameColumn = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/thead/tr/th[1]");
+    By lastNameColumn = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/thead/tr/th[2]");
+    By ageColumn = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/thead/tr/th[3]");
+    By emailColumn = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/thead/tr/th[4]");
+    By salaryColumn = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/thead/tr/th[5]");
+    By departmentColumn = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/thead/tr/th[6]");
+    By actionColumn = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/thead/tr/th[7]");
+    By addButton = By.cssSelector("button[id='addNewRecordButton']");
+    By searchButton = By.cssSelector("button[id='basic-addon2']");
+    By firstButton = By.xpath("//div[@role='group']/button[1]");
+    By previousButton = By.xpath("//div[@role='group']/button[2]");
+    By nextButton = By.xpath("//div[@role='group']/button[3]");
+    By lastButton = By.xpath("//div[@role='group']/button[4]");
+    By searchboxInput = By.cssSelector("input[id='searchBox']");
+    By filteredValue = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr/td[1]");
+    By editButton = By.cssSelector("span[id='edit-record-1']");
+    By firstNameRegistrationForm = By.cssSelector("input[id='firstName']");
+    By lastNameRegistrationForm = By.cssSelector("input[id='lastName']");
+    By emailRegistrationForm = By.cssSelector("input[id='userEmail']");
+    By ageRegistrationForm = By.cssSelector("input[id='age']");
+    By salaryRegistrationForm = By.cssSelector("input[id='salary']");
+    By departmentRegistrationForm = By.cssSelector("input[id='department']");
+    By submitButtonRegistrationForm = By.cssSelector("button[id='submit']");
+    By cellRow1Column1 = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[1]");
+
+
+    //column names
+    public String getTextFirstNameColumn(){
+        return getText(firstNameColumn);
+    }
+
+    public String getTextLastNameColumn(){
+        return getText(lastNameColumn);
+    }
+
+    public String getTextAgeColumn(){
+        return getText(ageColumn);
+    }
+
+    public String getTextEmailColumn(){
+        return getText(emailColumn);
+    }
+
+    public String getTextSalaryColumn(){
+        return getText(salaryColumn);
+    }
+
+    public String getTextDepartmentColumn(){
+        return getText(departmentColumn);
+    }
+
+    public String getTextActionColumn(){
+        return getText(actionColumn);
+    }
+
+    public boolean isDisplayedAddButton(){
+        return isDisplayed(addButton);
+    }
+
+    public boolean isEnabledAddButton(){
+        return isEnabled(addButton);
+    }
+
+    public boolean isDisplayedSearchButton(){
+        return isDisplayed(searchButton);
+    }
+
+    public boolean isEnabledSearchButton(){
+        return isEnabled(searchButton);
+    }
+
+    public boolean isDisplayedFirstButton(){
+        return isDisplayed(firstButton);
+    }
+
+    public boolean isEnabledFirstbutton(){
+        return isEnabled(firstButton);
+    }
+
+    public boolean isDisplayedPreviousButton(){
+        return isDisplayed(previousButton);
+    }
+
+    public boolean isEnabledPreviousButton(){
+        return isEnabled(previousButton);
+    }
+
+    public boolean isDisplayedNextButton(){
+        return isDisplayed(nextButton);
+    }
+
+    public boolean isEnabledNextButton(){
+        return isEnabled(nextButton);
+    }
+
+    public boolean isDisplayedLastButton(){
+        return isDisplayed(lastButton);
+    }
+
+    public boolean isEnabledLastButton(){
+        return isEnabled(lastButton);
+    }
+
+    public void enterSearchbox(String text){
+        type(searchboxInput, text);
+    }
+
+    public String getTextFilteredValue(){
+        return getText(filteredValue);
+    }
+
+    public void clearInputSearchbox(){
+        clearInput(searchboxInput);
+    }
+
+    public boolean isEmptyValueSearchbox(){
+        return isEmptyValueAttribute("value", searchboxInput);
+    }
+
+    public void clickEditButton(){
+        click(editButton);
+    }
+
+    public void clearInputFirstNameRegistrationForm(){
+        clearInput(firstNameRegistrationForm);
+    }
+
+    public void typeFirstNameRegistrationForm(String text){
+        type(firstNameRegistrationForm, text);
+    }
+
+    public void typeLastNameRegistrationForm(String text){
+        type(lastNameRegistrationForm, text);
+    }
+
+    public void typeEmailRegistrationForm(String text){
+        type(emailRegistrationForm, text);
+    }
+
+    public void typeAgeRegistrationForm(String text){
+        type(ageRegistrationForm, text);
+    }
+
+    public void typeSalaryRegistrationForm(String text){
+        type(salaryRegistrationForm, text);
+    }
+
+    public void typeDepartmentRegistrationForm(String text){
+        type(departmentRegistrationForm, text);
+    }
+
+    public void clickSubmitButtonRegistrationForm(){
+        click(submitButtonRegistrationForm);
+    }
+
+    public String getTextCellRow1Column1(){
+        return getText(cellRow1Column1);
+    }
+
+    public void clickAddButton(){
+        click(addButton);
+    }
 }

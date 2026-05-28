@@ -23,11 +23,29 @@ public class BasePage {
         return driver.findElement(locator).getText();
     }
 
+    public void clearInput(By locator){
+        driver.findElement(locator).clear();
+    }
+
+    public boolean isEmptyValueAttribute(String attribute, By locator){
+        String value = driver.findElement(locator).getAttribute(attribute);
+        if (value.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     public boolean isEnabled(By locator){
         return driver.findElement(locator).isEnabled();
     }
 
     public boolean isSelected(By locator){
         return driver.findElement(locator).isSelected();
+    }
+
+    public boolean isDisplayed(By locator) {
+        return driver.findElement(locator).isDisplayed();
     }
 }
