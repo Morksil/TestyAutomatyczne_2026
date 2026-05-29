@@ -3,6 +3,8 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class ElementsPage extends BasePage {
 
@@ -254,7 +256,15 @@ public class ElementsPage extends BasePage {
     By departmentRegistrationForm = By.cssSelector("input[id='department']");
     By submitButtonRegistrationForm = By.cssSelector("button[id='submit']");
     By cellRow1Column1 = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[1]");
-
+    By cellRow1Column2 = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[2]");
+    By cellRow1Column3 = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[3]");
+    By cellRow1Column4 = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[4]");
+    By cellRow1Column5 = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[5]");
+    By cellRow1Column6 = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[6]");
+    By paginationButton = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[3]/select");
+    By paginationOption10Button = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[3]/select/option[1]");
+    By paginationOption20Button = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[3]/select/option[2]");
+    By neutralClick = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[1]/div/h1");
 
     //column names
     public String getTextFirstNameColumn(){
@@ -305,7 +315,7 @@ public class ElementsPage extends BasePage {
         return isDisplayed(firstButton);
     }
 
-    public boolean isEnabledFirstbutton(){
+    public boolean isEnabledFirstButton(){
         return isEnabled(firstButton);
     }
 
@@ -389,7 +399,88 @@ public class ElementsPage extends BasePage {
         return getText(cellRow1Column1);
     }
 
+    public String getTextCellRow1Column2(){
+        return getText(cellRow1Column2);
+    }
+
+    public String getTextCellRow1Column3(){
+        return getText(cellRow1Column3);
+    }
+
+    public String getTextCellRow1Column4(){
+        return getText(cellRow1Column4);
+    }
+
+    public String getTextCellRow1Column5(){
+        return getText(cellRow1Column5);
+    }
+
+    public String getTextCellRow1Column6(){
+        return getText(cellRow1Column6);
+    }
+
     public void clickAddButton(){
         click(addButton);
+    }
+
+    public void clickSearchboxButton(){
+        click(searchButton);
+    }
+
+    public void clickNextButton(){
+        click(nextButton);
+    }
+
+    public void clickLastButton(){
+        click(lastButton);
+    }
+
+    public void clickPreviousButton(){
+        click(previousButton);
+    }
+
+    public void clickFirstButton(){
+        click(firstButton);
+    }
+
+    public String getTextPaginationButton(){
+        Select select = new Select(driver.findElement(paginationButton));
+        System.out.println("Value: " + select.getWrappedElement().getAttribute("value"));
+
+        for(WebElement option : select.getOptions()){
+            System.out.println(option.getText() + " | selected=" + option.isSelected());
+        }
+        return select.getFirstSelectedOption().getText();
+    }
+
+    public void selectPagination10Button(){
+        Select select = new Select(driver.findElement(paginationButton));
+        select.selectByIndex(0);
+    }
+
+    public void selectPagination20Button(){
+        Select select = new Select(driver.findElement(paginationButton));
+        select.selectByIndex(1);
+    }
+
+    public void selectPagination30Button(){
+        Select select = new Select(driver.findElement(paginationButton));
+        select.selectByIndex(2);
+    }
+
+    public void selectPagination40Button(){
+        Select select = new Select(driver.findElement(paginationButton));
+        select.selectByIndex(3);
+    }
+
+    public void selectPagination50Button(){
+        Select select = new Select(driver.findElement(paginationButton));
+        select.selectByIndex(4);
+        System.out.println("Value = " + select.getWrappedElement().getAttribute("value"));
+        System.out.println("selected = " + select.getFirstSelectedOption().getText());
+    }
+
+    public void neutralClick(){
+        click(neutralClick);
     }
 }

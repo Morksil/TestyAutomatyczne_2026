@@ -29,7 +29,7 @@ public class BaseTest {
                 Duration.ofMillis(Integer.parseInt(config.getProperty("durationOfMillis"))));
         elementsPage = new ElementsPage(driver);
 
-        System.out.println("BaseTest driver: " + driver);
+        //System.out.println("BaseTest driver: " + driver);
     }
 
     @AfterMethod

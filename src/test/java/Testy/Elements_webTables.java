@@ -1,8 +1,6 @@
 package Testy;
 
 import base.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -62,7 +60,7 @@ public class Elements_webTables extends BaseTest {
         boolean previousButtonVisibility = elementsPage.isDisplayedPreviousButton();
         boolean nextButtonVisibility = elementsPage.isDisplayedNextButton();
         boolean lastButtonVisibility = elementsPage.isDisplayedLastButton();
-        boolean firstButtonAvailability = elementsPage.isEnabledFirstbutton();
+        boolean firstButtonAvailability = elementsPage.isEnabledFirstButton();
         boolean previousButtonAvailabilty = elementsPage.isEnabledPreviousButton();
         boolean nextButtonAvailability = elementsPage.isEnabledNextButton();
         boolean lastButtonAvailability = elementsPage.isEnabledLastButton();
@@ -125,16 +123,113 @@ public class Elements_webTables extends BaseTest {
         int numberOfNewRecordsWebTables = Integer.parseInt(config.getProperty("numberOfNewRecords"));
 
         for(int i=0; i<numberOfNewRecordsWebTables; i++){
+            SoftAssert tempSoftAssert = new SoftAssert();
             Thread.sleep(sleepTime);
-            elementsPage.clickAddButton();
-            elementsPage.typeFirstNameRegistrationForm(config.getProperty("firstNameRegistrationForm") + i);
-            elementsPage.typeLastNameRegistrationForm(config.getProperty("lastNameRegistrationForm") + i);
-            elementsPage.typeEmailRegistrationForm(i + config.getProperty("emailRegistrationForm"));
-            elementsPage.typeAgeRegistrationForm(config.getProperty("ageRegistrationForm") + i);
-            elementsPage.typeSalaryRegistrationForm(config.getProperty("salaryRegistrationForm") + i);
-            elementsPage.typeDepartmentRegistrationForm(config.getProperty("departmentRegistrationForm") + i);
 
+            String tempFirstName = config.getProperty("firstNameRegistrationForm") + i;
+            String tempLastName = config.getProperty("lastNameRegistrationForm") + i;
+            String tempEmail = i + config.getProperty("emailRegistrationForm");
+            String tempAge = String.valueOf(i + 1);
+            String tempSalary = config.getProperty("salaryRegistrationForm") + i;
+            String tempDepartment = config.getProperty("departmentRegistrationForm") + i;
+
+            elementsPage.clickAddButton();
+            elementsPage.typeFirstNameRegistrationForm(tempFirstName);
+            elementsPage.typeLastNameRegistrationForm(tempLastName);
+            elementsPage.typeEmailRegistrationForm(tempEmail);
+            elementsPage.typeAgeRegistrationForm(tempAge);
+            elementsPage.typeSalaryRegistrationForm(tempSalary);
+            elementsPage.typeDepartmentRegistrationForm(tempDepartment);
             elementsPage.clickSubmitButtonRegistrationForm();
+
+            elementsPage.enterSearchbox(tempFirstName);
+            elementsPage.clickSearchboxButton();
+
+            tempSoftAssert.assertEquals(elementsPage.getTextCellRow1Column1(), tempFirstName);
+            tempSoftAssert.assertEquals(elementsPage.getTextCellRow1Column2(), tempLastName);
+            tempSoftAssert.assertEquals(elementsPage.getTextCellRow1Column3(), tempAge);
+            tempSoftAssert.assertEquals(elementsPage.getTextCellRow1Column4(), tempEmail);
+            tempSoftAssert.assertEquals(elementsPage.getTextCellRow1Column5(), tempSalary);
+            tempSoftAssert.assertEquals(elementsPage.getTextCellRow1Column6(), tempDepartment);
+            tempSoftAssert.assertAll();
+
+            elementsPage.clearInputSearchbox();
         }
+        Assert.assertTrue(elementsPage.isEnabledNextButton());
+        Assert.assertTrue(elementsPage.isEnabledLastButton());
+        Assert.assertFalse(elementsPage.isEnabledFirstButton());
+        Assert.assertFalse(elementsPage.isEnabledPreviousButton());
+
+        Thread.sleep(sleepTime);
+        elementsPage.clickNextButton();
+
+        Assert.assertFalse(elementsPage.isEnabledNextButton());
+        Assert.assertFalse(elementsPage.isEnabledLastButton());
+        Assert.assertTrue(elementsPage.isEnabledFirstButton());
+        Assert.assertTrue(elementsPage.isEnabledPreviousButton());
+
+        Thread.sleep(sleepTime);
+        elementsPage.clickFirstButton();
+
+        Assert.assertTrue(elementsPage.isEnabledNextButton());
+        Assert.assertTrue(elementsPage.isEnabledLastButton());
+        Assert.assertFalse(elementsPage.isEnabledFirstButton());
+        Assert.assertFalse(elementsPage.isEnabledPreviousButton());
+
+        Thread.sleep(sleepTime);
+        elementsPage.clickLastButton();
+
+        Assert.assertFalse(elementsPage.isEnabledNextButton());
+        Assert.assertFalse(elementsPage.isEnabledLastButton());
+        Assert.assertTrue(elementsPage.isEnabledFirstButton());
+        Assert.assertTrue(elementsPage.isEnabledPreviousButton());
+
+        Thread.sleep(sleepTime);
+        elementsPage.clickPreviousButton();
+
+        Assert.assertTrue(elementsPage.isEnabledNextButton());
+        Assert.assertTrue(elementsPage.isEnabledLastButton());
+        Assert.assertFalse(elementsPage.isEnabledFirstButton());
+        Assert.assertFalse(elementsPage.isEnabledPreviousButton());
+    }
+
+    @Test
+    public void webTable_paginationTestCase() throws InterruptedException {
+        driver.get(config.getProperty("elementsWebTablesURL"));
+
+        elementsPage.selectPagination10Button();
+        Thread.sleep(sleepTime);
+        elementsPage.neutralClick();
+        Thread.sleep(sleepTime);
+
+        String paginationButtonText = elementsPage.getTextPaginationButton();
+        System.out.println(paginationButtonText);
+
+        elementsPage.selectPagination20Button();
+        Thread.sleep(sleepTime);
+        elementsPage.neutralClick();
+        Thread.sleep(sleepTime);
+
+        paginationButtonText = elementsPage.getTextPaginationButton();
+        System.out.println(paginationButtonText);
+
+        elementsPage.selectPagination30Button();
+        Thread.sleep(sleepTime);
+        elementsPage.neutralClick();
+        Thread.sleep(sleepTime);
+        paginationButtonText = elementsPage.getTextPaginationButton();
+        System.out.println(paginationButtonText);
+
+        elementsPage.selectPagination40Button();
+        Thread.sleep(sleepTime);
+        elementsPage.neutralClick();
+        Thread.sleep(sleepTime);
+        paginationButtonText = elementsPage.getTextPaginationButton();
+        System.out.println(paginationButtonText);
+
+        elementsPage.selectPagination50Button();
+        paginationButtonText = elementsPage.getTextPaginationButton();
+        System.out.println(paginationButtonText);
+
     }
 }

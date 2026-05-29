@@ -1,6 +1,7 @@
 package base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class BasePage {
@@ -8,7 +9,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver){
         this.driver=driver;
-        System.out.println("BasePage driver: " + driver);
+        //System.out.println("BasePage driver: " + driver);
     }
 
     public void click(By locator){
@@ -24,7 +25,8 @@ public class BasePage {
     }
 
     public void clearInput(By locator){
-        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(Keys.CONTROL + "a");
+        driver.findElement(locator).sendKeys(Keys.DELETE);
     }
 
     public boolean isEmptyValueAttribute(String attribute, By locator){
